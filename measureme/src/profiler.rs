@@ -133,7 +133,7 @@ impl Profiler {
     pub fn persist(&self) {
         self.event_sink.persist();
         self.string_table.data_sink.persist();
-        self.string_table.index_sink().persist();
+        self.string_table.index_sink.persist();
     }
 }
 
