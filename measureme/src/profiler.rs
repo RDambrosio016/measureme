@@ -128,6 +128,12 @@ impl Profiler {
     fn nanos_since_start(&self) -> u64 {
         self.start_time.elapsed().as_nanos() as _
     }
+    
+    /// Persists event data to files, panics if any other Arcs to the serialization sink
+    /// exist
+    pub fn persist(&mut self) {
+        Arc::get_mut(&mut self.event_sink).unwrap().persist();
+    }
 }
 
 /// When dropped, this `TimingGuard` will record an "end" event in the
