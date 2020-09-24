@@ -129,10 +129,9 @@ impl Profiler {
         self.start_time.elapsed().as_nanos() as _
     }
     
-    /// Persists event data to files, panics if any other Arcs to the serialization sink
-    /// exist
-    pub fn persist(&mut self) {
-        Arc::get_mut(&mut self.event_sink).unwrap().persist();
+    /// Persists event data to files
+    pub fn persist(&self) {
+        self.event_sink.persist();
     }
 }
 
