@@ -171,7 +171,7 @@ impl SerializationSink {
         Addr(curr_addr)
     }
     
-    pub fn persist(&mut self) {
+    pub fn persist(&self) {
         let mut data = self.data.lock();
         let Inner {
             ref mut file,
