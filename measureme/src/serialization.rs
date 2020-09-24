@@ -170,10 +170,8 @@ impl SerializationSink {
 
         Addr(curr_addr)
     }
-}
-
-impl Drop for SerializationSink {
-    fn drop(&mut self) {
+    
+    pub fn persist(&mut self) {
         let mut data = self.data.lock();
         let Inner {
             ref mut file,
@@ -185,5 +183,11 @@ impl Drop for SerializationSink {
         if *buf_pos > 0 {
             file.write_all(&buffer[..*buf_pos]).unwrap();
         }
+    }
+}
+
+impl Drop for SerializationSink {
+    fn drop(&mut self) {
+        self.persist();
     }
 }
