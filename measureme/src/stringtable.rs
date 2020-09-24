@@ -137,8 +137,8 @@ pub const FIRST_REGULAR_STRING_ID: u32 = INVALID_STRING_ID + 1;
 
 /// Write-only version of the string table
 pub struct StringTableBuilder {
-    data_sink: Arc<SerializationSink>,
-    index_sink: Arc<SerializationSink>,
+    pub(crate) data_sink: Arc<SerializationSink>,
+    pub(crate) index_sink: Arc<SerializationSink>,
 }
 
 /// Anything that implements `SerializableString` can be written to a
